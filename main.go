@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
 func getPortNumber(defaultNumber string) string {
@@ -28,6 +29,9 @@ func getCountJSON(c echo.Context) error {
 
 func main() {
 	e := echo.New()
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"https://www.openprocessing.org", "https://www.fal-works.com"},
+	}))
 	e.GET("/", getCountJSON)
 	e.Logger.Fatal(e.Start(":" + getPortNumber("5000")))
 }
