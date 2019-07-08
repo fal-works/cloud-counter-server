@@ -30,7 +30,8 @@ func getCountJSON(c echo.Context) error {
 func main() {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"https://www.openprocessing.org", "https://www.fal-works.com"},
+		// AllowOrigins: []string{"https://www.openprocessing.org", "https://www.fal-works.com"},
+		AllowOrigins: []string{"*"},
 		AllowMethods: []string{http.MethodGet},
 		AllowHeaders: []string{echo.MIMEApplicationJSON, echo.MIMEApplicationJSONCharsetUTF8},
 	}))
