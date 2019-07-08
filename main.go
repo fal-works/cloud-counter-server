@@ -31,6 +31,8 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"https://www.openprocessing.org", "https://www.fal-works.com"},
+		AllowMethods: []string{http.MethodGet},
+		AllowHeaders: []string{echo.MIMEApplicationJSON, echo.MIMEApplicationJSONCharsetUTF8},
 	}))
 	e.GET("/", getCountJSON)
 	e.Logger.Fatal(e.Start(":" + getPortNumber("5000")))
