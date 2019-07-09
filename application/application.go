@@ -16,7 +16,7 @@ func getPortNumber(defaultNumber string) string {
 }
 
 // Start starts the web application.
-func Start(handleGet echo.HandlerFunc) {
+func Start(handleGet echo.HandlerFunc, handleIncrement echo.HandlerFunc) {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
@@ -24,5 +24,6 @@ func Start(handleGet echo.HandlerFunc) {
 		AllowHeaders: []string{echo.MIMEApplicationJSON, echo.MIMEApplicationJSONCharsetUTF8},
 	}))
 	e.GET("/", handleGet)
+	e.GET("/increment", handleIncrement)
 	e.Logger.Fatal(e.Start(":" + getPortNumber("5000")))
 }
