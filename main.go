@@ -18,13 +18,11 @@ func main() {
 	}
 
 	getCountJSON := func(echoContext echo.Context) error {
-		countInstance := database.GetCount(db)
-		return echoContext.JSON(http.StatusOK, countInstance)
+		return echoContext.JSON(http.StatusOK, database.GetCount(db))
 	}
 
 	getIncrementedCountJSON := func(echoContext echo.Context) error {
-		countInstance := database.GetIncrementedCount(db)
-		return echoContext.JSON(http.StatusOK, countInstance)
+		return echoContext.JSON(http.StatusOK, database.GetIncrementedCount(db))
 	}
 
 	application.Start(getCountJSON, getIncrementedCountJSON)
