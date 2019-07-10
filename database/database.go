@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"math"
 	"os"
 	"strconv"
 )
@@ -90,7 +91,13 @@ func GetCount(db *sql.DB) CountValue {
 // Also inserts the row if not exists.
 func GetIncrementedCount(db *sql.DB) CountValue {
 	countInstance := GetCount(db)
-	countInstance.Count++
+
+	if countInstance.Count >= math.MaxInt32 {
+		countInstance.Count = 0
+	} else {
+		countInstance.Count++
+	}
+
 	updateRow(db, countInstance)
 
 	return countInstance
