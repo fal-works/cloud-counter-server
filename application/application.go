@@ -19,7 +19,7 @@ func getPortNumber(defaultNumber string) string {
 func Start(handleGet echo.HandlerFunc, handleIncrement echo.HandlerFunc) {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"https://preview.openprocessing.org", "https://www.fal-works.com"},
+		AllowOrigins: []string{"https://preview.openprocessing.org", "https://fal-works.github.io/", "https://www.fal-works.com"},
 		AllowMethods: []string{echo.GET},
 		AllowHeaders: []string{echo.MIMEApplicationJSON, echo.MIMEApplicationJSONCharsetUTF8},
 	}))
